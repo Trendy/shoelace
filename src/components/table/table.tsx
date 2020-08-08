@@ -11,16 +11,15 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: true
 })
 export class Table {
-  @Prop() rowData: string[][];
+  @Prop() tableData: any[][];
   @Prop() columns: string[];
 
   componentWillLoad() {
-    console.log(this.rowData);
-    console.log(this.columns);
-    this.rowData = [['Hello world', 'Something else', 'even more stuff']];
-
+    this.tableData = [['Hello world', 'Something else', 'even more stuff']];
     this.columns = ['one', 'two', 'three'];
   }
+
+  
 
   render() {
     return (
@@ -30,7 +29,7 @@ export class Table {
             return <th>{title}</th>;
           })}
         </tr>
-        {this.rowData.map(row => {
+        {this.tableData.map(row => {
           return (
             <tr>
               {row.map(column => {

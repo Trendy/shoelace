@@ -1,4 +1,4 @@
-# Tab Panel
+# Table
 
 [component-header:sl-table]
 

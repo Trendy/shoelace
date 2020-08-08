@@ -763,7 +763,7 @@ export namespace Components {
     }
     interface SlTable {
         "columns": string[];
-        "rowData": string[][];
+        "tableData": any[][];
     }
     interface SlTag {
         /**
@@ -2025,7 +2025,7 @@ declare namespace LocalJSX {
     }
     interface SlTable {
         "columns"?: string[];
-        "rowData"?: string[][];
+        "tableData"?: any[][];
     }
     interface SlTag {
         /**
