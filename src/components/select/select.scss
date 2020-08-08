@@ -29,6 +29,10 @@
 
 .select__icon {
   display: inline-flex;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 .select__icon sl-icon {
   transition: var(--sl-transition-medium) transform ease;
@@ -36,4 +40,12 @@
 
 .select--open .select__icon sl-icon {
   transform: rotate(-180deg);
+}
+
+sl-menu {
+  max-width: 100%;
+}
+
+sl-dropdown::part(panel) {
+  max-width: 100%;
 }
