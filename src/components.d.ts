@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IconLibraryMutator, IconLibraryResolver } from "./components/icon-library/icon-library-registry";
+import { SortOrder } from "./components/table/table.enums";
 export namespace Components {
     interface SlAlert {
         /**
@@ -1002,6 +1003,18 @@ export namespace Components {
           * Array of columns, in order
          */
         "columns": string[];
+        /**
+          * Overrides the default sorting functionality with a custom sort function
+         */
+        "customSortFunction": any;
+        /**
+          * The column to sort by initially, defaults to the first column
+         */
+        "sortBy": string;
+        /**
+          * Sort order, ASC/DESC
+         */
+        "sortOrder": SortOrder;
         /**
           * The table data
          */
@@ -2499,6 +2512,26 @@ declare namespace LocalJSX {
           * Array of columns, in order
          */
         "columns"?: string[];
+        /**
+          * Overrides the default sorting functionality with a custom sort function
+         */
+        "customSortFunction"?: any;
+        /**
+          * Emitted after sorting occurs
+         */
+        "onAfterSort"?: (event: CustomEvent<any>) => void;
+        /**
+          * Emitted before sorting occurs
+         */
+        "onBeforeSort"?: (event: CustomEvent<any>) => void;
+        /**
+          * The column to sort by initially, defaults to the first column
+         */
+        "sortBy"?: string;
+        /**
+          * Sort order, ASC/DESC
+         */
+        "sortOrder"?: SortOrder;
         /**
           * The table data
          */
