@@ -997,6 +997,16 @@ export namespace Components {
          */
         "name": string;
     }
+    interface SlTable {
+        /**
+          * Array of columns, in order
+         */
+        "columns": string[];
+        /**
+          * The table data
+         */
+        "tableData": any[];
+    }
     interface SlTag {
         /**
           * Set to true to make the tag clearable.
@@ -1394,6 +1404,12 @@ declare global {
         prototype: HTMLSlTabPanelElement;
         new (): HTMLSlTabPanelElement;
     };
+    interface HTMLSlTableElement extends Components.SlTable, HTMLStencilElement {
+    }
+    var HTMLSlTableElement: {
+        prototype: HTMLSlTableElement;
+        new (): HTMLSlTableElement;
+    };
     interface HTMLSlTagElement extends Components.SlTag, HTMLStencilElement {
     }
     var HTMLSlTagElement: {
@@ -1450,6 +1466,7 @@ declare global {
         "sl-tab": HTMLSlTabElement;
         "sl-tab-group": HTMLSlTabGroupElement;
         "sl-tab-panel": HTMLSlTabPanelElement;
+        "sl-table": HTMLSlTableElement;
         "sl-tag": HTMLSlTagElement;
         "sl-textarea": HTMLSlTextareaElement;
         "sl-tooltip": HTMLSlTooltipElement;
@@ -2477,6 +2494,16 @@ declare namespace LocalJSX {
          */
         "name"?: string;
     }
+    interface SlTable {
+        /**
+          * Array of columns, in order
+         */
+        "columns"?: string[];
+        /**
+          * The table data
+         */
+        "tableData"?: any[];
+    }
     interface SlTag {
         /**
           * Set to true to make the tag clearable.
@@ -2688,6 +2715,7 @@ declare namespace LocalJSX {
         "sl-tab": SlTab;
         "sl-tab-group": SlTabGroup;
         "sl-tab-panel": SlTabPanel;
+        "sl-table": SlTable;
         "sl-tag": SlTag;
         "sl-textarea": SlTextarea;
         "sl-tooltip": SlTooltip;
@@ -2734,6 +2762,7 @@ declare module "@stencil/core" {
             "sl-tab": LocalJSX.SlTab & JSXBase.HTMLAttributes<HTMLSlTabElement>;
             "sl-tab-group": LocalJSX.SlTabGroup & JSXBase.HTMLAttributes<HTMLSlTabGroupElement>;
             "sl-tab-panel": LocalJSX.SlTabPanel & JSXBase.HTMLAttributes<HTMLSlTabPanelElement>;
+            "sl-table": LocalJSX.SlTable & JSXBase.HTMLAttributes<HTMLSlTableElement>;
             "sl-tag": LocalJSX.SlTag & JSXBase.HTMLAttributes<HTMLSlTagElement>;
             "sl-textarea": LocalJSX.SlTextarea & JSXBase.HTMLAttributes<HTMLSlTextareaElement>;
             "sl-tooltip": LocalJSX.SlTooltip & JSXBase.HTMLAttributes<HTMLSlTooltipElement>;
