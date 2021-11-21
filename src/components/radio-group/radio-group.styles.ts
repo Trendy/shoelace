@@ -44,4 +44,13 @@ export default css`
     overflow: hidden;
     white-space: nowrap;
   }
+
+  .radio-group .sl-required-input {
+    height: 1px;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 `;

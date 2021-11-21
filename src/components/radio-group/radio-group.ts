@@ -1,6 +1,8 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { ref, createRef } from 'lit/directives/ref.js';
+
 import type SlRadio from '../radio/radio';
 import styles from './radio-group.styles';
 
@@ -17,6 +19,7 @@ import styles from './radio-group.styles';
 @customElement('sl-radio-group')
 export default class SlRadioGroup extends LitElement {
   static styles = styles;
+  private requiredInputRef = createRef<HTMLInputElement>();
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
 
@@ -25,6 +28,9 @@ export default class SlRadioGroup extends LitElement {
 
   /** Shows the fieldset and legend that surrounds the radio group. */
   @property({ type: Boolean, attribute: 'fieldset' }) fieldset = false;
+
+  /** Indicates that a selection is required */
+  @property({ type: Boolean }) required = false;
 
   handleFocusIn() {
     // When tabbing into the fieldset, make sure it lands on the checked radio
@@ -39,6 +45,28 @@ export default class SlRadioGroup extends LitElement {
     });
   }
 
+  /** Checks for validity and shows the browser's validation message if the control is invalid. */
+  reportValidity() {
+    const radios = this.defaultSlot.assignedElements({ flatten: true });
+    const radioChecked = radios && Array.from(radios).some(el => (el as any).checked);
+    if (this?.requiredInputRef?.value) this.requiredInputRef.value.checked = radioChecked;
+
+    return !this.required || this?.requiredInputRef?.value?.reportValidity();
+  }
+
+  requiredInput() {
+    return this.required
+      ? html`<input
+          required
+          name="sl-required-input"
+          class="sl-required-input"
+          ${ref(this.requiredInputRef)}
+          aria-hidden="true"
+          type="radio"
+        />`
+      : html``;
+  }
+
   render() {
     return html`
       <fieldset
@@ -51,6 +79,7 @@ export default class SlRadioGroup extends LitElement {
         @focusin=${this.handleFocusIn}
       >
         <legend part="label" class="radio-group__label">
+          ${this.requiredInput()}
           <slot name="label">${this.label}</slot>
         </legend>
         <slot></slot>

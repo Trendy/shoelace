@@ -49,4 +49,16 @@ const App = () => (
   </SlRadioGroup>
 );
 ```
+
+### Showing the Fieldset
+
+You can show a fieldset and legend that wraps the radio group using the `fieldset` attribute.
+
+```html preview
+<sl-radio-group label="Select an option" required>
+  <sl-radio value="1">Option 1</sl-radio>
+  <sl-radio value="2">Option 2</sl-radio>
+  <sl-radio value="3">Option 3</sl-radio>
+</sl-radio-group>
+```
 [component-metadata:sl-radio-group]
