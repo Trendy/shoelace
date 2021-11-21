@@ -48,7 +48,7 @@ export default class SlRadioGroup extends LitElement {
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
     const radios = this.defaultSlot.assignedElements({ flatten: true });
-    const radioChecked = radios && Array.from(radios).some(el => (el as any).checked);
+    const radioChecked = radios && Array.from(radios).some(el => (el as SlRadio).checked);
     if (this?.requiredInputRef?.value) this.requiredInputRef.value.checked = radioChecked;
 
     return !this.required || this?.requiredInputRef?.value?.reportValidity();
